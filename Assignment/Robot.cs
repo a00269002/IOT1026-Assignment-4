@@ -47,7 +47,7 @@ public class Robot
     public void Run()
     {
         // Is this throw a good design choice? Can you think of any alternatives?
-        if (!_commands.Any()) throw new InvalidOperationException("No commands have been loaded!");
+        if (_commandsLoaded < _commands.Length) throw new InvalidOperationException("Not enough commands have been loaded!");
         foreach (var command in _commands)
         {
             command.Run(this);
