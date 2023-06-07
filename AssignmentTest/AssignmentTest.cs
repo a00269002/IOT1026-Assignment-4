@@ -1,4 +1,6 @@
 ﻿using Assignment;
+//using Assignment.AbstractCommand;
+using Assignment.InterfaceCommand;
 
 namespace AssignmentTest
 {
@@ -60,9 +62,9 @@ namespace AssignmentTest
         {
             Robot robot1 = new();
             Assert.AreEqual(robot1.NumCommands, 6);
-            var expectedCommands = 10;
-            Robot robot2 = new(expectedCommands);
-            Assert.AreEqual(robot2.NumCommands, expectedCommands);
+            const int ExpectedCommands = 10;
+            Robot robot2 = new(ExpectedCommands);
+            Assert.AreEqual(robot2.NumCommands, ExpectedCommands);
 
             Assert.AreEqual(robot1.IsPowered, false);
             robot1.IsPowered = true;
@@ -77,6 +79,16 @@ namespace AssignmentTest
             Assert.AreEqual(robot1.Y, 0);
             robot1.Y = -5;
             Assert.AreEqual(robot1.Y, -5);
+        }
+
+        [TestMethod]
+        public void CommandTest()
+        {
+            Robot testrobot = new(1);
+            Assert.AreEqual(testrobot.IsPowered, false);
+            testrobot.LoadCommand(new OnCommand());
+            testrobot.Run();
+            Assert.AreEqual(testrobot.IsPowered, true);
         }
     }
 }
