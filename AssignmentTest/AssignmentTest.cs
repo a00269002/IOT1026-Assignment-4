@@ -85,6 +85,24 @@ namespace AssignmentTest
         }
 
         [TestMethod]
+        public void BachataCommandTest()
+        {
+            Robot testRobot = new();
+            Assert.AreEqual(testRobot.X, 0);
+            Assert.AreEqual(testRobot.Y, 0);
+            testRobot.LoadCommand(new BachataCommand());
+            testRobot.Run();
+            Assert.AreEqual(testRobot.X, 0);
+            Assert.AreEqual(testRobot.Y, 0);
+
+            testRobot.IsPowered = true;
+            testRobot.LoadCommand(new BachataCommand());
+            testRobot.Run();
+            Assert.AreEqual(testRobot.X, -6);
+            Assert.AreEqual(testRobot.Y, 0);
+        }
+
+        [TestMethod]
         public void PropertiesTest()
         {
             Robot robot1 = new();

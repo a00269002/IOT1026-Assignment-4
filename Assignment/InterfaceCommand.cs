@@ -41,7 +41,7 @@ public class BachataCommand : RobotCommand
     {
         if (robot.IsPowered)
         {
-            for (int repeatSteps = 0; repeatSteps <= 3; repeatSteps++)
+            for (int repeatSteps = 0; repeatSteps < 3; repeatSteps++)
             {
                 robot.X++;
                 robot.X++;
