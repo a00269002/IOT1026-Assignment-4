@@ -34,3 +34,25 @@ public class NorthCommand : RobotCommand
 {
     public void Run(Robot robot) { if (robot.IsPowered) robot.Y++; }
 }
+
+public class BachataCommand : RobotCommand
+{
+    public void Run(Robot robot)
+    {
+        if (robot.IsPowered)
+        {
+            for (int repeatSteps = 0; repeatSteps <= 3; repeatSteps++)
+            {
+                robot.X++;
+                robot.X++;
+                robot.X--;
+                robot.X--;
+                robot.X--;
+            }
+            robot.Y++;
+            robot.X--;
+            robot.Y--;
+            robot.X++;
+        }
+    }
+}
