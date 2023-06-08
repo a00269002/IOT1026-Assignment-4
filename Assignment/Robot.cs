@@ -24,16 +24,22 @@ public class Robot
         return $"[{X} {Y} {IsPowered}]";
     }
 
-    // You should not have to use any of the methods below here but you should
-    // provide XML documentation for the argumented constructor, the Run method and one
-    // of the LoadCommand methods.
+    /// <summary>
+    /// Constructor named "Robot" with no parameters. It has an initializer that calls another constructor
+    /// </summary>
+    /// <constructor>
+    /// <modifier>public</modifier>
+    /// <name>Robot</name>
+    /// <parameters></parameters>
+    /// <initializer>this(DefaultCommands)</initializer>
+    /// <body>{ }</body>
+    /// </constructor>
     public Robot() : this(DefaultCommands) { }
 
     /// <summary>
-    /// Constructor that initializes the robot with the capacity to store a user specified
-    /// number of commands
+    /// Initializes a new instance of the <see cref="Robot"/> class with a specified number of commands.
     /// </summary>
-    /// <param name="numCommands">The maximum number of commands the robot can store</param>
+    /// <param name="numCommands">The number of commands for the robot.</param>
     public Robot(int numCommands)
     {
         _commands = new RobotCommand[numCommands];
@@ -41,25 +47,25 @@ public class Robot
     }
 
     /// <summary>
-    ///
+    /// Executes the loaded commands for the robot and prints the robot's state after each command execution.
     /// </summary>
-    /// <throws> </throws>
     public void Run()
     {
-        // Is this throw a good design choice? Can you think of any alternatives?
-        if (_commandsLoaded < _commands.Length) throw new InvalidOperationException("Not enough commands have been loaded!");
-        foreach (var command in _commands)
+        for (var i = 0; i < _commandsLoaded; ++i)
         {
-            command.Run(this);
+            _commands[i].Run(this);
             Console.WriteLine(this);
         }
     }
 
     /// <summary>
-    ///
+    /// Loads a command into the robot's command list.
     /// </summary>
-    /// <param name="command"></param>
-    /// <returns></returns>
+    /// <param name="command">The command to be loaded.</param>
+    /// <returns>
+    /// <c>true</c> if the command was successfully loaded;
+    /// otherwise, <c>false</c> if the command list is already full.
+    /// </returns>
     public bool LoadCommand(RobotCommand command)
     {
         if (_commandsLoaded >= NumCommands)

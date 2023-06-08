@@ -10,51 +10,78 @@ namespace AssignmentTest
         [TestMethod]
         public void PowerTest()
         {
-            Robot testRobot = new Robot();
-            testRobot.IsPowered = true;
+            Robot testRobot = new() { IsPowered = true };
             Assert.AreEqual(testRobot.IsPowered, true);
             testRobot.IsPowered = false;
             Assert.AreEqual(testRobot.IsPowered, false);
         }
 
         [TestMethod]
-        public void WestTest()
+        public void WestCommandTest()
         {
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
+            Assert.AreEqual(testRobot.X, 0);
+            testRobot.LoadCommand(new WestCommand());
+            testRobot.Run();
+            Assert.AreEqual(testRobot.X, 0);
+
             testRobot.IsPowered = true;
-            Assert.AreEqual(testRobot.X--, 0);
-            testRobot.IsPowered = false;
-            Assert.AreEqual(testRobot.X--, -1);
+            testRobot.LoadCommand(new WestCommand());
+            testRobot.Run();
+            Assert.AreEqual(testRobot.X, -2);
+            testRobot.Run();
+            Assert.AreEqual(testRobot.X, -4);
         }
 
         [TestMethod]
-        public void EastTest()
+        public void EastCommandTest()
         {
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
+            Assert.AreEqual(testRobot.X, 0);
+            testRobot.LoadCommand(new EastCommand());
+            testRobot.Run();
+            Assert.AreEqual(testRobot.X, 0);
+
             testRobot.IsPowered = true;
-            Assert.AreEqual(testRobot.X++, 0);
-            testRobot.IsPowered = false;
-            Assert.AreEqual(testRobot.X++, 1);
+            testRobot.LoadCommand(new EastCommand());
+            testRobot.Run();
+            Assert.AreEqual(testRobot.X, 2);
+            testRobot.Run();
+            Assert.AreEqual(testRobot.X, 4);
         }
 
         [TestMethod]
-        public void SouthTest()
+        public void SouthCommandTest()
         {
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
+            Assert.AreEqual(testRobot.Y, 0);
+            testRobot.LoadCommand(new SouthCommand());
+            testRobot.Run();
+            Assert.AreEqual(testRobot.Y, 0);
+
             testRobot.IsPowered = true;
-            Assert.AreEqual(testRobot.Y--, 0);
-            testRobot.IsPowered = false;
-            Assert.AreEqual(testRobot.Y--, -1);
+            testRobot.LoadCommand(new SouthCommand());
+            testRobot.Run();
+            Assert.AreEqual(testRobot.Y, -2);
+            testRobot.Run();
+            Assert.AreEqual(testRobot.Y, -4);
         }
 
         [TestMethod]
-        public void NorthTest()
+        public void NorthCommandTest()
         {
-            Robot testRobot = new Robot();
+            Robot testRobot = new();
+            Assert.AreEqual(testRobot.Y, 0);
+            testRobot.LoadCommand(new NorthCommand());
+            testRobot.Run();
+            Assert.AreEqual(testRobot.Y, 0);
+
             testRobot.IsPowered = true;
-            Assert.AreEqual(testRobot.Y++, 0);
-            testRobot.IsPowered = false;
-            Assert.AreEqual(testRobot.Y++, 1);
+            testRobot.LoadCommand(new NorthCommand());
+            testRobot.Run();
+            Assert.AreEqual(testRobot.Y, 2);
+            testRobot.Run();
+            Assert.AreEqual(testRobot.Y, 4);
         }
 
         [TestMethod]
@@ -82,13 +109,28 @@ namespace AssignmentTest
         }
 
         [TestMethod]
-        public void CommandTest()
+        public void OnCommandTest()
         {
-            Robot testrobot = new(1);
+            Robot testrobot = new();
             Assert.AreEqual(testrobot.IsPowered, false);
             testrobot.LoadCommand(new OnCommand());
             testrobot.Run();
             Assert.AreEqual(testrobot.IsPowered, true);
+            testrobot.Run();
+            Assert.AreEqual(testrobot.IsPowered, true);
+        }
+
+        [TestMethod]
+        public void OffCommandTest()
+        {
+            Robot testRobot = new();
+            Assert.AreEqual(testRobot.IsPowered, false);
+            testRobot.IsPowered = true;
+            testRobot.LoadCommand(new OffCommand());
+            testRobot.Run();
+            Assert.AreEqual(testRobot.IsPowered, false);
+            testRobot.Run();
+            Assert.AreEqual(testRobot.IsPowered, false);
         }
     }
 }
