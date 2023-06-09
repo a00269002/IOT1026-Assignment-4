@@ -150,5 +150,18 @@ namespace AssignmentTest
             testRobot.Run();
             Assert.AreEqual(testRobot.IsPowered, false);
         }
+        [TestMethod]
+        public void TestAssignCommand()
+        {
+            Robot robot = new();
+            string[] validCommands = { "on", "off", "north", "south", "east", "west" };
+
+            bool result = true;
+            foreach (string command in validCommands)
+            {
+                result &= Program.AssignCommand(robot, command);
+            }
+            Assert.AreEqual(result, true);
+        }
     }
 }

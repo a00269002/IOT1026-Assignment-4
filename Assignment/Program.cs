@@ -2,7 +2,7 @@
 
 namespace Assignment
 {
-    static class Program
+    public static class Program
     {
         enum Commands
         {
