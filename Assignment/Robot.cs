@@ -13,6 +13,7 @@ public class Robot
     public bool IsPowered { get; set; }
 
     private const int DefaultCommands = 6;
+
     // An array is not the preferred data structure here.
     // You will get bonus marks if you replace the array with the preferred data structure
     // Hint: It is NOT a list either,
@@ -59,7 +60,7 @@ public class Robot
     }
 
     /// <summary>
-    /// Loads a command into the robot's command list.
+    /// Loads a command into the robot's command array.
     /// </summary>
     /// <param name="command">The command to be loaded.</param>
     /// <returns>
