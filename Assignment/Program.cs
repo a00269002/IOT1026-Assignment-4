@@ -13,7 +13,7 @@ namespace Assignment
             east,
             west
         }
-        public static bool AssignCommand(Robot robot, string command)
+        public static bool AssignCommand(Robot robot, string? command)
         {
             if (Enum.TryParse<Commands>(command, out Commands thisCommand))
             {
